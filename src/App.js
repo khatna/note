@@ -3,7 +3,7 @@ import React from 'react';
 // Buttons component: render the buttons representing separate notes
 function Buttons(props) {
   const buttons = props.notes.map((note, i) => 
-    <li  key={i} style={{ listStyleType: "none" }}>
+    <li key={i} style={{ listStyleType: "none" }}>
       <button onClick={() => props.onClick(i)}>
         Note #{i+1} ({note.substring(0,10)}...)
       </button>
@@ -24,9 +24,8 @@ class App extends React.Component {
   }
 
   addNote = () => {
-    let newNotes = this.state.notes;
-    newNotes.push('');
-    this.setState({notes: newNotes});
+    this.state.notes.push('');
+    this.setState(state => ({notes: state.notes}));
   }
 
   onChange = e => {
@@ -43,9 +42,13 @@ class App extends React.Component {
     return (
       <div>
         <h1>Note #{focus+1}</h1>
-        <textarea value={notes[focus]} onChange={this.onChange}/>
-        <Buttons notes={notes} onClick={this.switch} />
-        <button onClick={this.addNote}>Add note</button>
+        <div class="text-box">
+          <textarea value={notes[focus]} onChange={this.onChange} placeholder="Teneg sda min yumaa bich" />
+        </div>
+        <div class="buttons">
+          <button onClick={this.addNote}>Add note</button>
+          <Buttons notes={notes} onClick={this.switch} />
+        </div>
       </div>
     )
   }
