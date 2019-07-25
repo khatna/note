@@ -1,17 +1,7 @@
 import React from 'react';
 
-// Buttons component: render the buttons representing separate notes
-function Buttons(props) {
-  const buttons = props.notes.map((note, i) => 
-    <li key={i} style={{ listStyleType: "none" }}>
-      <button onClick={() => props.onClick(i)}>
-        Note #{i+1} ({note.substring(0,10)}...)
-      </button>
-    </li>
-  );
-
-  return <ul>{buttons}</ul>
-}
+import Buttons from './components/Buttons'
+import Navbar from './components/Navbar';
 
 // Main component
 class App extends React.Component {
@@ -28,6 +18,12 @@ class App extends React.Component {
     this.setState(state => ({notes: state.notes}));
   }
 
+  deleteNote = () => {
+    const {notes, focus} = this.state;
+    notes.splice(focus, 1);
+    this.setState(state => ({notes: state.notes}));
+  }
+
   onChange = e => {
     let newNotes = this.state.notes;
     newNotes[this.state.focus] = e.target.value;
@@ -38,17 +34,20 @@ class App extends React.Component {
   
   render() {
     const {notes, focus} = this.state;
+    const placeholder = `Note #${focus + 1}`;
 
     return (
       <div>
-        <h1>Note #{focus+1}</h1>
-        <div class="text-box">
-          <textarea value={notes[focus]} onChange={this.onChange} placeholder="Teneg sda min yumaa bich" />
+        <Navbar />
+
+        <div className="text-box">
+          <textarea value={notes[focus]} onChange={this.onChange} placeholder={placeholder} />
         </div>
-        <div class="buttons">
-          <button onClick={this.addNote}>Add note</button>
-          <Buttons notes={notes} onClick={this.switch} />
+
+        <div className="buttons">
+          <Buttons notes={notes} onClick={this.switch} addNote={this.addNote} deleteNote={this.deleteNote}/>
         </div>
+
       </div>
     )
   }
