@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
 		<AppBar position='static' className='navbar'>
 			<Toolbar>
-				<Typography variant='title' color='inherit'>
+				<Typography variant='h5' color='inherit'>
 					Note
 				</Typography>
 			</Toolbar>

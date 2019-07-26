@@ -45,7 +45,7 @@ class App extends React.Component {
         </div>
 
         <div className="buttons">
-          <Buttons notes={notes} onClick={this.switch} addNote={this.addNote} deleteNote={this.deleteNote}/>
+          <Buttons state={this.state} onClick={this.switch} addNote={this.addNote} deleteNote={this.deleteNote}/>
         </div>
 
       </div>
