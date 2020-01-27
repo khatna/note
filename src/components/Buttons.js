@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 export default function Buttons(props) {
   const state = props.state;
   const buttons = state.notes.map((note, i) => {
-    let preview = note.substring(0, 10) || `Note ${i+1}`;
+    let preview = note.length === 0 ? `Note #${i+1}` : note.substring(0, 10) + '...';
     let variant = state.focus === i ? 'outlined' : 'text';
     return (
       <li key={i} style={{ listStyleType: "none" }}>
@@ -19,11 +19,11 @@ export default function Buttons(props) {
   return (
     <div>
       <div className="control">
-        <Button onClick={props.addNote} variant='contained' color='primary'>
+        <Button onClick={props.addNote} className='addButton' variant='contained' color='primary'>
           Add note
         </Button>
         <Button onClick={props.deleteNote} variant='contained' color='secondary'>
-          Delete current note
+          Delete note
         </Button>
       </div>
       <ul>{buttons}</ul>

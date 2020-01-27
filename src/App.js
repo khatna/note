@@ -35,6 +35,10 @@ class App extends React.Component {
   render() {
     const {notes, focus} = this.state;
     const placeholder = `Note #${focus + 1}`;
+    
+    fetch('/hello')
+      .then(res => res.json())
+      .then(res => console.log(res));
 
     return (
       <div>
@@ -45,7 +49,12 @@ class App extends React.Component {
         </div>
 
         <div className="buttons">
-          <Buttons state={this.state} onClick={this.switch} addNote={this.addNote} deleteNote={this.deleteNote}/>
+          <Buttons 
+            state={this.state} 
+            onClick={this.switch} 
+            addNote={this.addNote} 
+            deleteNote={this.deleteNote}
+          />
         </div>
 
       </div>

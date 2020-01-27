@@ -43,9 +43,12 @@ ul {
 
 .buttons {
   margin-top: 1%;
-  width: 20%;
 }
 
 .control {
   margin-left: 5px;
+}
+
+.addButton {
+  font-size: 30px;
 }

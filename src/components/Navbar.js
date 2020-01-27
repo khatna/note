@@ -8,7 +8,7 @@ export default function Navbar() {
 		<AppBar position='static' className='navbar'>
 			<Toolbar>
 				<Typography variant='h5' color='inherit'>
-					Note
+					Note v1.0
 				</Typography>
 			</Toolbar>
 		</AppBar>	
