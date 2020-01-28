@@ -13,6 +13,12 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    let oldNotes = localStorage.getItem('notes');
+    let newNotes = oldNotes ? JSON.parse(oldNotes) : [''];
+    this.setState({notes: newNotes});
+  }
+
   addNote = () => {
     this.state.notes.push('');
     this.setState(state => ({notes: state.notes}));
@@ -28,6 +34,7 @@ class App extends React.Component {
     let newNotes = this.state.notes;
     newNotes[this.state.focus] = e.target.value;
     this.setState({notes: newNotes});
+    localStorage.setItem('notes', JSON.stringify(this.state.notes));
   }
   
   switch = i => this.setState({focus:i});
